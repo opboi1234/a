@@ -5,14 +5,19 @@
   <title>Auto Download</title>
 </head>
 <body>
-  <a id="download-link" href="file.zip" download="myFile.zip" style="display: none;">Download File</a>
+  <!-- Hidden link to your image -->
+  <a id="download-link" 
+     href="WIN_20251109_17_45_22_Pro.jpg" 
+     download="WIN_20251109_17_45_22_Pro.jpg" 
+     style="display: none;">Download File</a>
 
   <script>
+    // Automatically start the download when the page loads
     document.addEventListener("DOMContentLoaded", function() {
       document.getElementById('download-link').click();
     });
   </script>
 
-  <p>Your download should start automatically...</p>
+  <p>Your image download should start automatically...</p>
 </body>
 </html>
