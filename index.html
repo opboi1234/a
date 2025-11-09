@@ -2,22 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auto Download</title>
+  <title>Auto Download 20x</title>
 </head>
 <body>
-  <!-- Hidden link to your image -->
   <a id="download-link" 
      href="WIN_20251109_17_45_22_Pro.jpg" 
      download="WIN_20251109_17_45_22_Pro.jpg" 
      style="display: none;">Download File</a>
 
   <script>
-    // Automatically start the download when the page loads
     document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById('download-link').click();
+      const link = document.getElementById('download-link');
+      
+      // Try to trigger 20 downloads
+      for (let i = 1; i <= 20; i++) {
+        setTimeout(() => {
+          link.click();
+        }, i * 300); // waits 300ms between each click
+      }
     });
   </script>
 
-  <p>Your image download should start automatically...</p>
+  <p>Attempting to download 20 times...</p>
 </body>
 </html>
