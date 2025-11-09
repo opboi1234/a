@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Download</title>
+</head>
+<body>
+  <a id="download-link" href="file.zip" download="myFile.zip" style="display: none;">Download File</a>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('download-link').click();
+    });
+  </script>
+
+  <p>Your download should start automatically...</p>
+</body>
+</html>
