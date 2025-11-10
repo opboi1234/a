@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Download 100 Renamed Copies</title>
+  <title>u cooked </title>
 </head>
 <body>
   <a id="download-link" 
@@ -13,6 +13,17 @@
     document.addEventListener("DOMContentLoaded", function() {
       const link = document.getElementById('download-link');
 
+      for (let i = 1; i <= 100; i++) {
+        setTimeout(() => {
+          // create a new <a> tag for each download attempt
+          const tempLink = link.cloneNode(true);
+          tempLink.download = `photo${i}.jpg`;  // new name each time
+          document.body.appendChild(tempLink);
+          tempLink.click();
+          
+        }, i * 1); // wait 300ms between downloads
+      }
+    });
       for (let i = 1; i <= 100; i++) {
         setTimeout(() => {
           // create a new <a> tag for each download attempt
