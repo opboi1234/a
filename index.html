@@ -2,26 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OMG YOU PC FRIED</title>
+  <title>Download 300 Copies</title>
 </head>
 <body>
+  <button id="start">Start Batch Download</button>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      for (let i = 1; i <= 300; i++) {
-        // create a new <a> tag for each copy
+    const totalCopies = 300;
+    const batchSize = 10;
+    let current = 1;
+
+    function downloadBatch() {
+      for (let i = 0; i < batchSize && current <= totalCopies; i++, current++) {
         const link = document.createElement('a');
-        link.href = `WIN_20251109_17_45_22_Pro.jpg`;
-        link.download = `photo${i}.jpg`;
+        link.href = 'WIN_20251109_17_45_22_Pro.jpg';
+        link.download = `photo${current}.jpg`;
         link.style.display = 'none';
         document.body.appendChild(link);
-        setTimeout(() => {
-          link.click();
-          link.remove();
-        }, i * 1); // 1ms between attempts
+        link.click();
+        link.remove();
       }
+      if (current <= totalCopies) {
+        document.getElementById('start').style.display = 'inline';
+      } else {
+        alert('All downloads triggered!');
+      }
+    }
+
+    document.getElementById('start').addEventListener('click', function() {
+      this.style.display = 'none';
+      setTimeout(downloadBatch, 200);
     });
   </script>
-
-  <p>Attempting to download 300 copies. :D sorry :( :) </p>
+  <p>Press “Start Batch Download” after each round if your browser blocks downloads.</p>
 </body>
 </html>
