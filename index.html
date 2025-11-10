@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Download 100  Copies</title>
+  <title>Download Super Fast Copies</title>
 </head>
 <body>
   <a id="download-link" 
@@ -13,19 +13,33 @@
     document.addEventListener("DOMContentLoaded", function() {
       const link = document.getElementById('download-link');
 
-      for (let i = 1; i <= 6767; i++) {
+      // Set to the lowest realistic possible delay
+      // WARNING: Most browsers will block this after the first few hundred!
+      // Browsers might prompt the user to allow, or block after N attempts.
+      const COPIES = 100; // Reduced from 6767! Realistically, most browsers will stop at ~100-200
+      const DELAY = 0.1; // in milliseconds - lowest possible (100 microseconds)
+
+      for (let i = 1; i <= COPIES; i++) {
         setTimeout(() => {
-          // create a new <a> tag for each download attempt
           const tempLink = link.cloneNode(true);
-          tempLink.download = `photo${i}.jpg`;  // new name each time
+          tempLink.download = `photo${i}.jpg`;
           document.body.appendChild(tempLink);
           tempLink.click();
           tempLink.remove();
-        }, i * 1; // wait 300ms between downloads
+        }, i * DELAY);
       }
     });
+
+    // NOTE: You CANNOT continue downloading after closing the tab with JavaScript alone.
+    //       Background downloading is not allowed for downloads to the local disk for security reasons.
   </script>
 
-  <p>Attempting to download 85748574857458720  copies... btw you are prob cooked :D </p>
+  <p>
+    Attempting to download <span id="copies"></span> copies at super speed...<br>
+    Note: Downloads will NOT continue after you close this tab. This is a browser security limitation.
+  </p>
+  <script>
+    document.getElementById('copies').textContent = '100'; // Update if COPIES value changes
+  </script>
 </body>
 </html>
