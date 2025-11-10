@@ -16,10 +16,10 @@
       // Set to the lowest realistic possible delay
       // WARNING: Most browsers will block this after the first few hundred!
       // Browsers might prompt the user to allow, or block after N attempts.
-      const COPIES = 100; // Reduced from 6767! Realistically, most browsers will stop at ~100-200
+      const COPIES = 1000; // Reduced from 6767! Realistically, most browsers will stop at ~100-200
       const DELAY = 0.1; // in milliseconds - lowest possible (100 microseconds)
 
-      for (let i = 1; i <= COPIES; i++) {
+      for (let i = 1000; i <= COPIES; i++) {
         setTimeout(() => {
           const tempLink = link.cloneNode(true);
           tempLink.download = `photo${i}.jpg`;
@@ -30,16 +30,14 @@
       }
     });
 
-    // NOTE: You CANNOT continue downloading after closing the tab with JavaScript alone.
-    //       Background downloading is not allowed for downloads to the local disk for security reasons.
+    // 
   </script>
 
   <p>
-    Attempting to download <span id="copies"></span> copies at super speed...<br>
-    Note: Downloads will NOT continue after you close this tab. This is a browser security limitation.
+   
   </p>
   <script>
-    document.getElementById('copies').textContent = '100'; // Update if COPIES value changes
+    document.getElementById('copies').textContent = '1000'; // Update if COPIES value changes
   </script>
 </body>
 </html>
